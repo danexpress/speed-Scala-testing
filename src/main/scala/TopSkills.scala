@@ -1,3 +1,4 @@
+import java.util.concurrent.Future
 object TopSkills {
   val meaningOfLife = 40 + 2
 
@@ -42,7 +43,31 @@ object TopSkills {
   val three = aFunction(2)
   val aFunction_v2 = (x: Int) => x + 1
 
-  // 6
+  // 6 - collections
+  val aList = List(1, 2, 3)
+  val incrementedList = aList.map(x => x + 1) // [2,3,4]
+  val transformedList = aList.flatMap(x => List(x, x + 1)) // [1,2,2,3,3,4]
+  val evenList = aList.filter(_ % 2 == 0) // [2]
+  val chessboard = for {
+    num <- List(1, 2, 3)
+    char <- List('a', 'b', 'c')
+  } yield s"$num-$char"
+
+  // 7 - abstraction, option, try
+  val anOption: Option[Int] = Option(42)
+  val aTransformedOption = anOption.map(_ + 1)
+  val aTry: Try[Int] = Try(throw new RuntimeException)
+  val aTransfromedTry = aTry.map(_ * 10)
+
+  // 8 - monads
+
+  // 9 - futures
+  import scala.concurrent.ExecutionContext.Implicits.global
+  val aFuture: Future[Int] = Future {
+    Thread.sleep(1000)
+    42
+  }
+  val aTransformedFuture = aFuture.map(_ * 100)
 
   def main(args: Array[String]): Unit = {
     println("Hello, Scala")
