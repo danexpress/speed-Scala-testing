@@ -69,6 +69,36 @@ object TopSkills {
   }
   val aTransformedFuture = aFuture.map(_ * 100)
 
+  // 10 - contextual abstractions (implicits)
+  // a - given/using combo
+  def methodWithUsingClause(regularArg: Int)(using implicitArg: String) = s"$implicitArg - $regularArg"
+  given defaultLanguage: String = "Scala"
+  val currentVersion = methodWithUsingClause(3)
+
+  //b - extension methods
+  extension (n: Int) {
+    def times(s: String): String = concatenateN(n, s)
+  }
+
+  val scalax3 = 3.times("Scala")
+  // type classes
+
+  //c  - implicit conversions
+  import scala.language.implicitConversions
+  given string2Person: Conversion[String, Person] with {
+    override def apply(x: String) = Person(x, "Scala")
+  }
+
+  val daniel_v2: Person = "Daniel" // Conversion("Daniel")
+
+  //bonus:
+    /* 
+    -variance (ZIO)
+    - self-types
+    -type members + type projections
+    - scala type system
+     */
+
   def main(args: Array[String]): Unit = {
     println("Hello, Scala")
   }
