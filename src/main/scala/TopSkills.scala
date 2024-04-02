@@ -28,6 +28,22 @@ object TopSkills {
 
   val daniel: Human = new Person("Daniel", "Scala")
 
+  // 4 - pattern matching
+
+  val danielSays = daniel match {
+    case Person(name, lang) => s"$name likes $lang"
+  }
+
+  // 5 - function as values
+  val aFunction = new Function1[Int, Int] {
+    override def apply(x: Int) = x + 1
+  }
+
+  val three = aFunction(2)
+  val aFunction_v2 = (x: Int) => x + 1
+
+  // 6
+
   def main(args: Array[String]): Unit = {
     println("Hello, Scala")
   }
